@@ -1,23 +1,26 @@
-name: CloudHub2.0 deployment workflow
+name: Deploy to CloudHub 2.0
 
-on:  
-  push:    
-    branches: [main]  # trigger on main only
+on:
   workflow_dispatch:
 
 jobs:
-  deploy-dev:
-    uses: anil-cicd-org/maven-deploy-workflows-master/.github/workflows/maven-reusable-wf.yml@main
-    with:
-      targetEnv: dev
-    secrets:
-      MAVEN_SETTINGS_BASE64: ${{ secrets.MAVEN_SETTINGS_BASE64 }}    
-
-  deploy-test:
-    needs: deploy-dev
-    uses: anil-cicd-org/maven-deploy-workflows-master/.github/workflows/maven-reusable-wf.yml@main
-    with:
-      targetEnv: test
+  build:
+    uses: anil-cicd-org/maven-deploy-workflows-master/.github/workflows/build.yml@main
     secrets:
       MAVEN_SETTINGS_BASE64: ${{ secrets.MAVEN_SETTINGS_BASE64 }}
-   
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    environment: dev
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Download Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: mule-application
+
+      - name: Deploy to CloudHub 2.0
+        run: mvn deploy -DskipMunitTests -DmuleDeploy -Pdev
