@@ -1,0 +1,23 @@
+name: CloudHub2.0 deployment workflow
+
+on:
+  push:
+    branches: [main]  # trigger on develop only
+
+jobs:
+  deploy-dev:
+    uses: anil-cicd-org/maven-deploy-workflows-master/.github/workflows/maven-reusable-wf.yml@main
+    with:
+      targetEnv: dev
+    secrets:
+      MAVEN_SETTINGS_BASE64: ${{ secrets.MAVEN_SETTINGS_BASE64 }}
+
+  deploy-test:
+    needs: deploy-dev
+    uses: anil-cicd-org/maven-deploy-workflows-master/.github/workflows/maven-reusable-wf.yml@main
+    with:
+      targetEnv: test
+    secrets:
+      MAVEN_SETTINGS_BASE64: ${{ secrets.MAVEN_SETTINGS_BASE64 }}
+      environment: test   # this will trigger required reviewer approval
+  
