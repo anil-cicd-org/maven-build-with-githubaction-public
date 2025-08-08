@@ -2,7 +2,7 @@ name: CloudHub2.0 deployment workflow
 
 on:  
   push:    
-    branches: [main]  # trigger on develop only
+    branches: [main]  # trigger on main only
   workflow_dispatch:
 
 jobs:
@@ -12,6 +12,7 @@ jobs:
       targetEnv: dev
     secrets:
       MAVEN_SETTINGS_BASE64: ${{ secrets.MAVEN_SETTINGS_BASE64 }}
+    environment: dev
 
   deploy-test:
     needs: deploy-dev
@@ -21,4 +22,3 @@ jobs:
     secrets:
       MAVEN_SETTINGS_BASE64: ${{ secrets.MAVEN_SETTINGS_BASE64 }}
     environment: test   # this will trigger required reviewer approval
-  
