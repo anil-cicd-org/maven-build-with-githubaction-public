@@ -1,7 +1,8 @@
 name: CloudHub2.0 deployment workflow
 
-on:
+on:  
   push:
+    workflow_dispatch:
     branches: [main]  # trigger on develop only
 
 jobs:
