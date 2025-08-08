@@ -19,5 +19,5 @@ jobs:
       targetEnv: test
     secrets:
       MAVEN_SETTINGS_BASE64: ${{ secrets.MAVEN_SETTINGS_BASE64 }}
-    environment: test   # this will trigger required reviewer approval
+      environment: test   # this will trigger required reviewer approval
   
