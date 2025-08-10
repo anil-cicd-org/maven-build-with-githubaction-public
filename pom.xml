@@ -4,7 +4,7 @@
 
 	<groupId>5f054cb4-03ac-427a-a100-a4c507b9ca1c</groupId>
 	<artifactId>maven-build-with-githubaction-public</artifactId>
-	<version>1.0.7-SNAPSHOT</version>
+	<version>1.0.8-SNAPSHOT</version>
 	<packaging>mule-application</packaging>
 
 	<name>maven-build-with-githubaction-public</name>
@@ -39,10 +39,31 @@
 			<properties>
 				<azuretest.environment>Sandbox</azuretest.environment>
 				<azuretest.targetName>Cloudhub-US-East-2</azuretest.targetName>
-				<mule.env>DEV</mule.env>
+				<mule.env>SANDBOX</mule.env>
 				<encrypt.key>muleazuretest@11223344</encrypt.key>
 				<azuretest.businessGroup>LTIMindtree</azuretest.businessGroup>
 				<azuretest.applicationName>maven-build-with-githubaction-public-${project.api.version}</azuretest.applicationName>
+				<azuretest.workers>1</azuretest.workers>
+				<azuretest.workerType>MICRO</azuretest.workerType>
+				<azuretest.api.version/>
+			</properties>
+		</profile>
+		<profile>
+			<id>test</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+				<property>
+					<name>env</name>
+					<value>Design</value>
+				</property>
+			</activation>
+			<properties>
+				<azuretest.environment>Sandbox</azuretest.environment>
+				<azuretest.targetName>Cloudhub-US-East-2</azuretest.targetName>
+				<mule.env>DESIGN</mule.env>
+				<encrypt.key>muleazuretest@11223344</encrypt.key>
+				<azuretest.businessGroup>LTIMindtree</azuretest.businessGroup>
+				<azuretest.applicationName>dev-maven-build-with-githubaction-public</azuretest.applicationName>
 				<azuretest.workers>1</azuretest.workers>
 				<azuretest.workerType>MICRO</azuretest.workerType>
 				<azuretest.api.version/>
