@@ -4,7 +4,7 @@
 
 	<groupId>5f054cb4-03ac-427a-a100-a4c507b9ca1c</groupId>
 	<artifactId>maven-build-with-githubaction-public</artifactId>
-	<version>1.0.5-SNAPSHOT</version>
+	<version>1.0.6-SNAPSHOT</version>
 	<packaging>mule-application</packaging>
 
 	<name>maven-build-with-githubaction-public</name>
