@@ -12,4 +12,5 @@ jobs:
       environment: DEV
     secrets:
       MAVEN_SETTINGS_BASE64: ${{ secrets.MAVEN_SETTINGS_BASE64 }} 
+      SECRET_VALUE: ${{secrets.SECRET_VALUE}}
     
