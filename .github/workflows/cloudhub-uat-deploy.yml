@@ -1,4 +1,4 @@
-name: Deploy to CloudHub 2.0
+name: Deploy to CloudHub 2.0 - UAT
 
 on:
   workflow_dispatch:
@@ -9,4 +9,6 @@ jobs:
   build-and-deploy:
     uses: anil-cicd-org/maven-deploy-workflows-master/.github/workflows/build.yml@main
     secrets:
-      MAVEN_SETTINGS_BASE64: ${{ secrets.MAVEN_SETTINGS_BASE64 }}  
+      MAVEN_SETTINGS_BASE64: ${{ secrets.MAVEN_SETTINGS_BASE64 }} 
+    with:
+      environment: UAT
