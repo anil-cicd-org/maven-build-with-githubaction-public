@@ -8,7 +8,8 @@ on:
 jobs:
   build-and-deploy:
     uses: anil-cicd-org/maven-deploy-workflows-master/.github/workflows/build.yml@main
-    secrets:
-      MAVEN_SETTINGS_BASE64: ${{ secrets.MAVEN_SETTINGS_BASE64 }} 
     with:
       environment: UAT
+    secrets:
+      MAVEN_SETTINGS_BASE64: ${{ secrets.MAVEN_SETTINGS_BASE64 }} 
+    
